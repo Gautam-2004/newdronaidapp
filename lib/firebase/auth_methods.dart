@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -53,8 +52,7 @@ class AuthMethods {
                         emailresult: emailresult,
             address: address,
             phone_no: phone_no,
-            deliveryAddress: deliveryAddress,
-            tokens: tokens);
+            deliveryAddress: deliveryAddress);
 
         await _firestore
             .collection('users')

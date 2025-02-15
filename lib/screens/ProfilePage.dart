@@ -85,12 +85,14 @@ class _ProfilePageState extends State<ProfilePage> {
               const SizedBox(height: 16),
 
               // Hospital Name Section
-              Text(
-                hospitalName ?? 'Loading...',
-                style: const TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: kPrimaryColor,
+              Center(
+                child: Text(
+                  hospitalName ?? 'Loading...',
+                  style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: kPrimaryColor,
+                  ),
                 ),
               ),
 

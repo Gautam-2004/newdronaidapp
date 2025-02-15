@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../utils/colors.dart';
@@ -10,14 +13,25 @@ class InfoPage extends StatefulWidget {
   State<InfoPage> createState() => _InfoPageState();
 }
 
+// pickImage () async {
+
+  
+// FilePickerResult? pickedImg= 
+//   await FilePicker.platform.pickFiles(type: FileType.image);
+//   if( pickedImg != null){
+//     return await File(pickedImg.files.single.path!).readAsBytes();
+//   }
+// }
+
 class _InfoPageState extends State<InfoPage> {
+
+  
+
   int _currentCarouselImage = 0;
 
   final List<String> imgList = [
-    'assets/asset1.jpg',
     'assets/about_us.jpg',
     'assets/drone_hex.jpeg',
-    'assets/minister_interaction.png'
   ];
 
   @override
@@ -49,53 +63,56 @@ class _InfoPageState extends State<InfoPage> {
                     ),
                     child: Container(
                       padding: EdgeInsets.only(top: 140),
-                      child: Column(
-                        children: [
-                          ListTile(
-                            title: Text(
-                              'Contact Us',
-                              style: GoogleFonts.abel(
-                                fontSize: 50,
-                                color: primaryColor,
-                                fontWeight: FontWeight.bold,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Column(
+                          children: [
+                            ListTile(
+                              title: Text(
+                                'Contact Us',
+                                style: GoogleFonts.abel(
+                                  fontSize: 50,
+                                  color: primaryColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                          ),
-                          ListTile(
-                            title: Text(
-                              'Email Address',
-                              style: GoogleFonts.abel(
-                                fontSize: 25,
-                                color: primaryColor,
-                                fontWeight: FontWeight.bold,
+                            ListTile(
+                              title: Text(
+                                'Email Address',
+                                style: GoogleFonts.abel(
+                                  fontSize: 25,
+                                  color: primaryColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              subtitle: Text(
+                                'info@dronaid.in',
+                                style: GoogleFonts.abel(
+                                  fontSize: 20,
+                                  color: primaryColor,
+                                ),
                               ),
                             ),
-                            subtitle: Text(
-                              'info@dronaid.in',
-                              style: GoogleFonts.abel(
-                                fontSize: 20,
-                                color: primaryColor,
+                            ListTile(
+                              title: Text(
+                                'Address info',
+                                style: GoogleFonts.abel(
+                                  fontSize: 25,
+                                  color: primaryColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                          ),
-                          ListTile(
-                            title: Text(
-                              'Address info',
-                              style: GoogleFonts.abel(
-                                fontSize: 25,
-                                color: primaryColor,
-                                fontWeight: FontWeight.bold,
+                              subtitle: Text(
+                                'Dronaid WS, MIT Campus, Manipal, KA, IN 576104',
+                                style: GoogleFonts.abel(
+                                  fontSize: 20,
+                                  color: primaryColor,
+                                ),
                               ),
-                            ),
-                            subtitle: Text(
-                              'Dronaid WS, MIT Campus, Manipal, KA, IN 576104',
-                              style: GoogleFonts.abel(
-                                fontSize: 20,
-                                color: primaryColor,
-                              ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -141,65 +158,68 @@ class _InfoPageState extends State<InfoPage> {
                         topLeft: Radius.circular(80),
                         topRight: Radius.circular(80)),
                   ),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(left: 30),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Updates',
-                            style: GoogleFonts.actor(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 1,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        
+                                                Container(
+                          padding: EdgeInsets.only(left: 30),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Updates',
+                              style: GoogleFonts.actor(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: 1,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      CarouselSlider(
-                        items: imgList
-                            .map(
-                              (e) => Center(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    print('object');
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(boxShadow: [
-                                      BoxShadow(
-                                        color: secondaryColor,
-                                        blurRadius: 40,
+                        SizedBox(
+                          height: 10,
+                        ),
+                        CarouselSlider(
+                          items: imgList
+                              .map(
+                                (e) => Center(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      print('object');
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(boxShadow: [
+                                        BoxShadow(
+                                          color: secondaryColor,
+                                          blurRadius: 40,
+                                        ),
+                                      ]),
+                                      child: ClipRRect(
+                                        child: Image.asset(e),
+                                        borderRadius: BorderRadius.circular(20),
                                       ),
-                                    ]),
-                                    child: ClipRRect(
-                                      child: Image.asset(e),
-                                      borderRadius: BorderRadius.circular(20),
                                     ),
                                   ),
                                 ),
-                              ),
-                            )
-                            .toList(),
-                        options: CarouselOptions(
-                            initialPage: 0,
-                            autoPlay: true,
-                            autoPlayInterval: Duration(seconds: 2),
-                            enlargeCenterPage: true,
-                            onPageChanged: (value, _) {
-                              setState(() {
-                                _currentCarouselImage = value;
-                              });
-                            }),
-                      ),
-                      Container(
-                        height: 10,
-                      ),
-                      buildCarouselIndicator(),
-                    ],
+                              )
+                              .toList(),
+                          options: CarouselOptions(
+                              initialPage: 0,
+                              autoPlay: true,
+                              autoPlayInterval: Duration(seconds: 2),
+                              enlargeCenterPage: true,
+                              onPageChanged: (value, _) {
+                                setState(() {
+                                  _currentCarouselImage = value;
+                                });
+                              }),
+                        ),
+                        Container(
+                          height: 10,
+                        ),
+                        buildCarouselIndicator(),
+                      ],
+                    ),
                   ),
                 ),
               ),

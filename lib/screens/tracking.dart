@@ -159,7 +159,7 @@ class _TrackingState extends State<Tracking> {
               servoFlag = snapshot.data!['servoFlag'];
             }
 
-            if (droneFlag == 3) {
+            if (droneFlag == 4) {
               FirebaseFirestore.instance
                   .collection('drone')
                   .doc('drone1')

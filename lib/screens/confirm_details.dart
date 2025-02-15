@@ -126,7 +126,7 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                   keyboardType: TextInputType.number,
                   controller: _weightController,
                   decoration: InputDecoration(
-                    hintText: 'Please Enter Weight of Package in kgs',
+                    hintText: 'Please Enter Weight of Package in Kgs.',
                     contentPadding: EdgeInsets.all(10),
                     border: InputBorder.none,
                   ),
@@ -135,7 +135,7 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0, bottom: 10),
                 child: Text(
-                  'Maximum Weight allowed: 2kgs',
+                  'Maximum Weight allowed: 6 Kg',
                   style: TextStyle(fontWeight: FontWeight.w400),
                 ),
               ),
@@ -144,21 +144,21 @@ class _ConfirmDetailsState extends State<ConfirmDetails> {
                   double weight =
                       double.tryParse(_weightController.text) ?? 0.0;
                   if (weight != 0.0) {
-                    if (weight <= 2) {
+                    if (weight <= 6) {
                       await confirmDetails();
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => OrderTrackingPage(requestId: widget.requestId,)));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text("The weight limit is exceeded"),
+                          content: Text("The Weight Limit is Exceeded."),
                         ),
                       );
                     }
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text("Enter the weight"),
+                        content: Text("Enter the Weight:"),
                       ),
                     );
                   }
